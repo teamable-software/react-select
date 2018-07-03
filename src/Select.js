@@ -927,6 +927,7 @@ export default class Select extends Component<Props, State> {
       document.addEventListener('touchend', this.onTouchEnd, false);
     }
   }
+
   stopListeningToTouch() {
     if (document && document.removeEventListener) {
       document.removeEventListener('touchstart', this.onTouchStart);
@@ -1289,6 +1290,8 @@ export default class Select extends Component<Props, State> {
       inputId,
       inputValue,
       tabIndex,
+      placeholder,
+      isMulti,
     } = this.props;
     const { Input } = this.components;
     const { inputIsHidden } = this.state;
@@ -1318,7 +1321,7 @@ export default class Select extends Component<Props, State> {
       'aria-labelledby': this.props['aria-labelledby'],
     };
 
-    const { cx } = this.commonProps;
+    const { cx, selectProps } = this.commonProps;
 
     return (
       <Input
@@ -1326,6 +1329,7 @@ export default class Select extends Component<Props, State> {
         autoComplete="off"
         autoCorrect="off"
         cx={cx}
+        selectProps={selectProps}
         getStyles={this.getStyles}
         id={id}
         innerRef={this.getInputRef}
@@ -1338,6 +1342,7 @@ export default class Select extends Component<Props, State> {
         tabIndex={tabIndex}
         type="text"
         value={inputValue}
+        placeholder={isMulti && this.hasValue() ? placeholder : ''}
         {...ariaAttributes}
       />
     );
@@ -1359,11 +1364,11 @@ export default class Select extends Component<Props, State> {
       inputValue,
       placeholder,
     } = this.props;
-    const { selectValue, focusedValue } = this.state;
+    const { selectValue, focusedValue, isFocused } = this.state;
 
     if (!this.hasValue() || !controlShouldRenderValue) {
       return inputValue ? null : (
-        <Placeholder {...commonProps} key="placeholder" isDisabled={isDisabled}>
+        <Placeholder {...commonProps} key="placeholder" isDisabled={isDisabled} isFocused={isFocused}>
           {placeholder}
         </Placeholder>
       );

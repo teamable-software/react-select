@@ -162,6 +162,7 @@ export const makeAsyncSelect = (SelectComponent: ComponentType<*>) =>
       return (
         // $FlowFixMe
         <SelectComponent
+          filterOption={null}
           {...props}
           filterOption={this.props.filterOption || null}
           ref={ref => {

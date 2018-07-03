@@ -15,6 +15,7 @@ export type InputProps = PropsWithStyles & {
   /** Whether the input is disabled */
   isDisabled?: boolean,
   className?: string,
+  selectProps: {},
 };
 
 export const inputCSS = ({ isDisabled }: InputProps) => ({
@@ -41,15 +42,16 @@ const Input = ({
   innerRef,
   isHidden,
   isDisabled,
-  ...props
+  selectProps,
+  ...rest
 }: InputProps) => (
-  <div css={getStyles('input', props)}>
+  <div css={getStyles('input', { isDisabled, isHidden, selectProps })}>
     <AutosizeInput
       className={cx(null, { 'input': true }, className)}
       inputRef={innerRef}
       inputStyle={inputStyle(isHidden)}
       disabled={isDisabled}
-      {...props}
+      {...rest}
     />
   </div>
 );

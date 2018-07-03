@@ -10,6 +10,10 @@ export type PlaceholderProps = CommonProps & {
   children: Node,
   /** props passed to the wrapping element for the group. */
   innerProps: { [string]: any },
+  /** Whether the select is disabled. */
+  isDisabled: boolean,
+  /** Wether the select is focused. */
+  isFocused: boolean,
 };
 
 export const placeholderCSS = () => ({
