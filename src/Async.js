@@ -163,13 +163,13 @@ export const makeAsyncSelect = (SelectComponent: ComponentType<*>) =>
         // $FlowFixMe
         <SelectComponent
           filterOption={null}
+          isLoading={isLoading}
           {...props}
           filterOption={this.props.filterOption || null}
           ref={ref => {
             this.select = ref;
           }}
           options={options}
-          isLoading={isLoading}
           onInputChange={this.handleInputChange}
         />
       );
