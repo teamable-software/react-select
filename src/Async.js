@@ -165,7 +165,6 @@ export const makeAsyncSelect = (SelectComponent: ComponentType<*>) =>
           filterOption={null}
           isLoading={isLoading}
           {...props}
-          filterOption={this.props.filterOption || null}
           ref={ref => {
             this.select = ref;
           }}
